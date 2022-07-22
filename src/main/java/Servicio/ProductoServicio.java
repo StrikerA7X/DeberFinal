@@ -147,7 +147,7 @@ public class ProductoServicio implements IProductoServicio
              int codigoProducto = 0;
         Producto producto=this.buscarPorCodigo(codigoProducto);
         var posicion=this.buscarPosicion(producto);        
-        listPartido.remove(posicion);
+        listProducto.remove(posicion);
             replaceFile();
         return producto;
         }
@@ -177,7 +177,7 @@ public class ProductoServicio implements IProductoServicio
     public int buscarPosicion(Producto producto) {
         
         int posicion = -1;
-        for(var p:this.productoList){
+        for(var p:this.listProducto){
             posicion++;
             if(p.getCodigoProducto()==producto.getCodigoProducto()){
                 break;

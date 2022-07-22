@@ -155,7 +155,7 @@ public class FacturaServicio implements IFacturaServicio {
      public int buscarPosicion(Factura factura) {
         
         int posicion =-1;
-        for(var p:this.facturaList){
+        for(var p:this.listFactura){
             posicion++;
             if(p.getNumFactura()==factura.getNumFactura()){
                 break;
@@ -179,8 +179,5 @@ public class FacturaServicio implements IFacturaServicio {
         return result;
     }
 
-    @Override
-    public Factura modificar(int numeroNuevo, Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
 }

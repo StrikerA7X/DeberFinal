@@ -6,6 +6,9 @@ package Vista;
 
 import Controlador.FacturaControl;
 import Modelo.Factura;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -15,12 +18,15 @@ import javax.swing.table.TableModel;
  * @author Gus-Gus
  */
 public class FacturaVentana1 extends javax.swing.JInternalFrame {
+    private FacturaControl facturaControl;
 
     /**
      * Creates new form FacturaVentana1
+     * @throws java.io.IOException
      */
-    public FacturaVentana1() {
+    public FacturaVentana1() throws IOException {
         initComponents();
+        facturaControl = new FacturaControl();
     }
 
     /**
@@ -264,8 +270,12 @@ public class FacturaVentana1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbutonGuardarActionPerformed
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
-        // TODO add your handling code here:
-        this.actualizarTablaFactura();
+        try {
+            // TODO add your handling code here:
+            this.actualizarTablaFactura();
+        } catch (IOException ex) {
+            Logger.getLogger(FacturaVentana1.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -279,7 +289,11 @@ public class FacturaVentana1 extends javax.swing.JInternalFrame {
         args[5]= this.txtTotal.getText();
         args[6]= this.txtCantidad.getText();
         
-        this.facturaControl.modificar(args);
+        try {
+            this.facturaControl.modificar(args);
+        } catch (IOException ex) {
+            Logger.getLogger(FacturaVentana1.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         JOptionPane.showMessageDialog(this, "Datos Actualizados",
             "Modificar Factura", JOptionPane.ERROR_MESSAGE);
@@ -295,7 +309,7 @@ public class FacturaVentana1 extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
-    private void actualizarTablaFactura(){
+    private void actualizarTablaFactura() throws IOException{
         String[] encabezado= new String[7];
         encabezado[0]="Numero Factura";
         encabezado[1]="Cliente";
@@ -349,12 +363,15 @@ public class FacturaVentana1 extends javax.swing.JInternalFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FacturaVentana1().setVisible(true);
+                try {
+                    new FacturaVentana1().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(FacturaVentana1.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
-    private FacturaControl facturaControl = new FacturaControl();
     private TableModel modeloTabla;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

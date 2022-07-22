@@ -49,7 +49,7 @@ public class ClienteServicio implements IClienteServicio {
                 } catch (IOException e) {
                     archivo.close();
                 }
-                this.listcliente = listar();
+                this.listCliente = listar();
                 return cliente;
             }
             else
@@ -127,8 +127,8 @@ public class ClienteServicio implements IClienteServicio {
     }
 
     @Override
-    public Cliente eliminar(int codigoEquipo) throws IOException{
-        if (exist(codigoEquipo) == true)
+    public Cliente eliminar(int codigoCliente) throws IOException{
+        if (exist(codigoCliente) == true)
         {
         Cliente cliente=this.buscarPorCodigo(codigoCliente);
         var posicion=this.buscarPosicion(cliente);        
@@ -161,7 +161,7 @@ public class ClienteServicio implements IClienteServicio {
   @Override
     public int buscarPosicion(Cliente cliente) {
         int posicion =-1;
-        for(var p:this.clienteList){
+        for(var p:this.listCliente){
             posicion++;
             if(p.getNumCedula()==cliente.getNumCedula()){
                 break;
@@ -218,9 +218,18 @@ public class ClienteServicio implements IClienteServicio {
     }
 
     @Override
-    public Cliente eliminar(long numCedula) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Cliente buscarPorCodigo(long codigo) {
+    Cliente cliente = null;
+        for(Cliente p:this.listCliente){
+            if(p.getCodigo()==codigo){
+                cliente=p;
+                break;
+            }
+        }
+        return cliente;
     }
+
+
     
 
  

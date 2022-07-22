@@ -17,8 +17,12 @@ import java.util.List;
  */
 public class ProductoControl {
     
-    private ProductoServicio productoServicio = new ProductoServicio();
+    private ProductoServicio productoServicio;
     
+    public ProductoControl() throws IOException
+    {
+        productoServicio = new ProductoServicio();
+    }
     
     public Producto crearProducto(String[]args)throws RuntimeException{
         

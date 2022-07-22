@@ -15,7 +15,12 @@ import java.util.List;
  */
 public class ClienteControl {
     
-    private ClienteServicio clienteServicio = new ClienteServicio();
+    private static ClienteServicio clienteServicio;
+    
+    public ClienteControl() throws IOException
+    {
+        clienteServicio = new ClienteServicio();
+    }
     
     public Cliente crearCliente(String [] args)throws RuntimeException{
         Cliente cliente = new Cliente(this.convertirEntero(args[0]), args [1], args[2], args[3], this.convertirEntero(args[4]), args[5]);

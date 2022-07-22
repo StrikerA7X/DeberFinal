@@ -18,11 +18,14 @@ import javax.swing.table.TableModel;
  * @author Gus-Gus
  */
 public class ProductoVentana extends javax.swing.JInternalFrame {
+    private ProductoControl productoControl;
 
     /**
      * Creates new form ProductoVentana1
+     * @throws java.io.IOException
      */
-    public ProductoVentana() {
+    public ProductoVentana() throws IOException {
+        productoControl = new ProductoControl ();
         initComponents();
     }
 
@@ -310,12 +313,15 @@ public class ProductoVentana extends javax.swing.JInternalFrame {
     public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProductoVentana().setVisible(true);
+                try {
+                    new ProductoVentana().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ProductoVentana.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }    
     
-    private ProductoControl productoControl = new ProductoControl ();
     private TableModel modeloTabla;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

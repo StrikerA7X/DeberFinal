@@ -18,12 +18,15 @@ import javax.swing.table.TableModel;
  * @author Gus-Gus
  */
 public class ClienteVentana1 extends javax.swing.JInternalFrame {
+    private ClienteControl clienteControl;
 
     /**
      * Creates new form ClienteVentana1
+     * @throws java.io.IOException
      */
-    public ClienteVentana1() {
+    public ClienteVentana1() throws IOException {
         initComponents();
+        clienteControl = new ClienteControl();
     }
 
     /**
@@ -319,12 +322,15 @@ public class ClienteVentana1 extends javax.swing.JInternalFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClienteVentana1().setVisible(true);
+                try {
+                    new ClienteVentana1().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(ClienteVentana1.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
-    private ClienteControl clienteControl = new ClienteControl();
     private TableModel modeloTabla;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;

@@ -19,10 +19,17 @@ import java.util.List;
  */
 public class FacturaControl {
     
-    private FacturaServicio facturaServicio = new FacturaServicio();
+    private FacturaServicio facturaServicio;
     private ClienteServicio clienteServicio = new ClienteServicio();
     private ProductoServicio productoServicio = new ProductoServicio();
     //private FacturaServicio facturaServicio = new FacturaServicio();
+    
+    public FacturaControl() throws IOException
+    {
+        facturaServicio = new FacturaServicio();
+        clienteServicio = new ClienteServicio();
+        productoServicio = new ProductoServicio();
+    }
     
     
     public Factura crearFactura(String []args)throws RuntimeException{
@@ -39,7 +46,7 @@ public class FacturaControl {
     public Factura elimiar (String arg){
         return this.facturaServicio.eliminar(convertirEntero(arg));
     }
-    public Factura modificar(String []args){
+    public Factura modificar(String []args) throws IOException{
         Cliente cliente = this.clienteServicio.buscarPorCedula(convertirEntero(args[1]));
         Producto producto = this.productoServicio.buscarPorCodigo(convertirEntero(args[3]));
         Factura facturaNuevo = new Factura (convertirEntero(args[0]), cliente, args[2], producto ,args[4],convertirEntero(args[5]), convertirEntero(args[6]));

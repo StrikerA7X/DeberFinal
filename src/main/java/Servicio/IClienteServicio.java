@@ -5,6 +5,7 @@
 package Servicio;
 
 import Modelo.Cliente;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -14,9 +15,11 @@ import java.util.List;
 public interface IClienteServicio {
     
     public Cliente crear(Cliente cliente);
-    public Cliente modificar(long numCedulaNuevo, Cliente cliente);
-    public Cliente eliminar (long numCedula);
+    public Cliente modificar(long numCedulaNuevo, Cliente clienteNuevo) throws IOException;
+    public Cliente eliminar(int codigoCliente) throws IOException;
     public Cliente buscarPorCedula(long numCedula);
+    public Cliente buscarPorCodigo(long codigo);
     public int buscarPosicion(Cliente cliente);
-    public List<Cliente> listar();
+    public List<Cliente> listar() throws IOException;
+    public int count() ;
 }
